@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Files</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <h2 class="text-center">Hi, Welcome back!</h2>
+
+    <div class="main w-full min-h-screen bg-zinc-900 p-10 text-white">
+      <a class="text-zinc-200 mb-10 inline-block" href="/">Back to Home?</a>
+
+      <form action="/edit" method="post">
+        <input
+          class="outline-none rounded-lg block px-5 py-2 bg-zinc-700 w-3/4"
+          type="text"
+          placeholder="Previous title"
+          name="previous"
+          value="<%=filename %>"
+        /> 
+        <input
+          class="outline-none rounded-lg block px-5 py-2 bg-zinc-700 w-3/4 mt-2"
+          type="text"
+          placeholder="New title"
+          name="new"
+        />
+    
+        <input
+          class="rounded-lg mt-4 bg-zinc-800 p-2"
+          type="submit"
+          value="Rename"
+        />
+      </form>
+    </div>
+  </body>
+</html>

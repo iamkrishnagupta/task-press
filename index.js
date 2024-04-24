@@ -56,4 +56,14 @@ app.post("/create", (req, res) => {
   res.redirect("/");
 });
 
+app.post("/delete/:filename", (req, res) => {
+  const filePath = path.join(__dirname, "files", req.params.filename);
+  fs.unlink(filePath, (err) => {
+    if (err) {
+      console.error("Error deleting file:", err);
+    }
+    res.redirect("/");
+  });
+});
+
 app.listen(3333);

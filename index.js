@@ -12,8 +12,21 @@ app.get("/", (req, res) => {
   fs.readdir("./files", function (err, files) {
     console.log(files);
     //to send something -> ,{}
-    res.render("index", { data: files });
+    res.render("index", { files: files });
   });
+});
+
+app.get("/file/:filename", (req, res) => {
+  fs.readFile(
+    `./files/${req.params.filename}`,
+    "utf-8",
+    function (err, filedata) {
+      res.render("show", {
+        filename: req.params.filename,
+        filedata: filedata,
+      });
+    }
+  );
 });
 
 app.post("/create", (req, res) => {

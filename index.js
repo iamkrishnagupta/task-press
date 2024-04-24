@@ -1,14 +1,31 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const path = require('path')
+const path = require("path");
+const fs = require("fs");
 
 app.set("view engine", "ejs");
 app.use(express.json());
-app.use(express.urlencoded({ extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get('/', (req, res) => {
-  res.send("Welcome Back!")
-})
+app.get("/", (req, res) => {
+  fs.readdir("./files", function (err, files) {
+    console.log(files);
+    //to send something -> ,{}
+    res.render("index", { data: files });
+  });
+});
+
+app.post("/create", (req, res) => {
+  fs.writeFile(
+    `./files/${req.body.title.split(" ").join("")}.txt`,
+    req.body.details,
+    function (err) {
+      console.error(err);
+    }
+  );
+  console.log(req.body);
+  res.redirect("/");
+});
 
 app.listen(3333);
